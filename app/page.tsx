@@ -1,11 +1,22 @@
-import { Button } from "@/components/ui/button";
-import Image from "next/image";
+"use client"
+
+import { useEffect } from "react"
+import { useRouter } from "next/navigation"
+import { useAuth } from "@clerk/nextjs"
 
 export default function Home() {
-  return (
-    <div className="flex flex-col min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <h1>Kurmi Madharchod</h1>
-      <Button>Clerk Button</Button>
-    </div>
-  );
+  const { isLoaded, userId } = useAuth()
+  const router = useRouter()
+
+  useEffect(() => {
+    if (!isLoaded) return
+
+    if (userId) {
+      router.replace("/dashboard")
+    } else {
+      router.replace("/sign-in")
+    }
+  }, [isLoaded, userId, router])
+
+  return null
 }
