@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 22, "column": 0}, "map": {"version":3,"sources":["file:///home/abhi/Coding/Project_0/project0/app/dashboard/opportunities/page.tsx"],"sourcesContent":["export const metadata = { title: \"Opportunities\" }\n\nexport default function OpportunitiesPage() {\n  return (\n    <div className=\"p-4\">\n      <h1 className=\"text-2xl font-bold\">Opportunities</h1>\n      <p className=\"mt-2 text-muted-foreground\">Find internships, jobs and other opportunities.</p>\n    </div>\n  )\n}\n"],"names":[],"mappings":";;;;;;;;AAAO,MAAM,WAAW;IAAE,OAAO;AAAgB;AAElC,SAAS;IACtB,qBACE,8OAAC;QAAI,WAAU;;0BACb,8OAAC;gBAAG,WAAU;0BAAqB;;;;;;0BACnC,8OAAC;gBAAE,WAAU;0BAA6B;;;;;;;;;;;;AAGhD","debugId":null}}]
+}

@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 18, "column": 0}, "map": {"version":3,"sources":["file:///home/abhi/Coding/Project_0/project0/app/page.tsx"],"sourcesContent":["import { redirect } from 'next/navigation'\nimport { getAuth } from '@clerk/nextjs/server'\n\nexport default function Home() {\n  const { userId } = getAuth()\n\n  // If not signed in, redirect to the sign-in page\n  if (!userId) {\n    return redirect('/sign-in')\n  }\n\n  // If signed in, redirect to the dashboard\n  return redirect('/dashboard')\n}\n"],"names":[],"mappings":";;;;AAAA;AAAA;AACA;;;AAEe,SAAS;IACtB,MAAM,EAAE,MAAM,EAAE,GAAG,IAAA,sLAAO;IAE1B,iDAAiD;IACjD,IAAI,CAAC,QAAQ;QACX,OAAO,IAAA,iMAAQ,EAAC;IAClB;IAEA,0CAA0C;IAC1C,OAAO,IAAA,iMAAQ,EAAC;AAClB","debugId":null}}]
+}

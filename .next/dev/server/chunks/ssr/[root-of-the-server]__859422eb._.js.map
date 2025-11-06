@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 10, "column": 0}, "map": {"version":3,"sources":["file:///home/abhi/Coding/Project_0/project0/lib/auth-client.ts"],"sourcesContent":["import { createAuthClient } from \"better-auth/react\";\nimport { convexClient } from \"@convex-dev/better-auth/client/plugins\";\n\nexport const authClient = createAuthClient({\n    plugins: [convexClient()],\n});\n\n"],"names":[],"mappings":";;;;AAAA;AACA;AAAA;;;AAEO,MAAM,aAAa,IAAA,uLAAgB,EAAC;IACvC,SAAS;QAAC,IAAA,+MAAY;KAAG;AAC7B","debugId":null}},
+    {"offset": {"line": 28, "column": 0}, "map": {"version":3,"sources":["file:///home/abhi/Coding/Project_0/project0/app/ConvexClientProvider.tsx"],"sourcesContent":["\"use client\";\n\nimport { ReactNode } from \"react\";\nimport { ConvexReactClient } from \"convex/react\";\nimport { authClient } from \"@/lib/auth-client\";\nimport { ConvexBetterAuthProvider } from \"@convex-dev/better-auth/react\";\n\nconst convex = new ConvexReactClient(process.env.NEXT_PUBLIC_CONVEX_URL!, {\n    expectAuth: true,\n});\n\nexport function ConvexClientProvider({ children }: { children: ReactNode }) {\n    return (\n        <ConvexBetterAuthProvider client={convex} authClient={authClient}>\n            {children}\n        </ConvexBetterAuthProvider>\n    );\n}\n\n"],"names":[],"mappings":";;;;;AAGA;AAAA;AACA;AACA;AALA;;;;;AAOA,MAAM,SAAS,IAAI,6KAAiB,+EAAsC;IACtE,YAAY;AAChB;AAEO,SAAS,qBAAqB,EAAE,QAAQ,EAA2B;IACtE,qBACI,8OAAC,8MAAwB;QAAC,QAAQ;QAAQ,YAAY,mIAAU;kBAC3D;;;;;;AAGb","debugId":null}}]
+}

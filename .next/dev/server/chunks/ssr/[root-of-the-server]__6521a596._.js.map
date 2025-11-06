@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 22, "column": 0}, "map": {"version":3,"sources":["file:///home/abhi/Coding/Project_0/project0/app/dashboard/sac-permission/page.tsx"],"sourcesContent":["export const metadata = { title: \"SAC Permission\" }\n\nexport default function SacPermissionPage() {\n  return (\n    <div className=\"p-4\">\n      <h1 className=\"text-2xl font-bold\">SAC Permission</h1>\n      <p className=\"mt-2 text-muted-foreground\">Submit or view SAC permission requests.</p>\n    </div>\n  )\n}\n"],"names":[],"mappings":";;;;;;;;AAAO,MAAM,WAAW;IAAE,OAAO;AAAiB;AAEnC,SAAS;IACtB,qBACE,8OAAC;QAAI,WAAU;;0BACb,8OAAC;gBAAG,WAAU;0BAAqB;;;;;;0BACnC,8OAAC;gBAAE,WAAU;0BAA6B;;;;;;;;;;;;AAGhD","debugId":null}}]
+}

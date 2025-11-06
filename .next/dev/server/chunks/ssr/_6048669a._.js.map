@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 4, "column": 0}, "map": {"version":3,"sources":["file:///home/abhi/Coding/Project_0/project0/app/page.tsx"],"sourcesContent":["\"use client\"\n\nimport { useEffect } from \"react\"\nimport { useRouter } from \"next/navigation\"\nimport { useAuth } from \"@clerk/nextjs\"\n\nexport default function Home() {\n  const { isLoaded, userId } = useAuth()\n  const router = useRouter()\n\n  useEffect(() => {\n    if (!isLoaded) return\n\n    if (userId) {\n      router.replace(\"/dashboard\")\n    } else {\n      router.replace(\"/sign-in\")\n    }\n  }, [isLoaded, userId, router])\n\n  return null\n}\n"],"names":[],"mappings":";;;;AAEA;AACA;AACA;AAJA;;;;AAMe,SAAS;IACtB,MAAM,EAAE,QAAQ,EAAE,MAAM,EAAE,GAAG,IAAA,6PAAO;IACpC,MAAM,SAAS,IAAA,+IAAS;IAExB,IAAA,kNAAS,EAAC;QACR,IAAI,CAAC,UAAU;QAEf,IAAI,QAAQ;YACV,OAAO,OAAO,CAAC;QACjB,OAAO;YACL,OAAO,OAAO,CAAC;QACjB;IACF,GAAG;QAAC;QAAU;QAAQ;KAAO;IAE7B,OAAO;AACT","debugId":null}}]
+}

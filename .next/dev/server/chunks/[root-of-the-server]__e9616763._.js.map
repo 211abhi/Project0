@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 40, "column": 0}, "map": {"version":3,"sources":["file:///home/abhi/Coding/Project_0/project0/app/api/auth/%5B...all%5D/route.ts"],"sourcesContent":["import { nextJsHandler } from \"@convex-dev/better-auth/nextjs\";\n\nexport const { GET, POST } = nextJsHandler();\n\n"],"names":[],"mappings":";;;;;;AAAA;;AAEO,MAAM,EAAE,GAAG,EAAE,IAAI,EAAE,GAAG,IAAA,sMAAa","debugId":null}}]
+}

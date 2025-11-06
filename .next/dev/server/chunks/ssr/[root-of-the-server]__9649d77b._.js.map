@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 18, "column": 0}, "map": {"version":3,"sources":["file:///home/abhi/Coding/Project_0/project0/app/dashboard/page.tsx"],"sourcesContent":["export default function Dashboard() {\n  return (\n    <div className=\"flex min-h-screen items-center justify-center\">\n      <div className=\"text-center\">\n        <h1 className=\"text-3xl font-bold\">Dashboard</h1>\n        <p className=\"mt-4 text-muted-foreground\">Welcome to your dashboard.</p>\n      </div>\n    </div>\n  )\n}\n"],"names":[],"mappings":";;;;;;AAAe,SAAS;IACtB,qBACE,8OAAC;QAAI,WAAU;kBACb,cAAA,8OAAC;YAAI,WAAU;;8BACb,8OAAC;oBAAG,WAAU;8BAAqB;;;;;;8BACnC,8OAAC;oBAAE,WAAU;8BAA6B;;;;;;;;;;;;;;;;;AAIlD","debugId":null}}]
+}
