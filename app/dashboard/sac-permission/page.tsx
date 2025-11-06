@@ -28,7 +28,6 @@ type SacRequest = {
   end: string; // ISO
   status: RequestStatus;
   createdAt: string;
-  // optional special-request metadata
   isSpecial?: boolean;
   specialDetails?: string;
 };
@@ -58,6 +57,15 @@ function overlaps(aStart: string, aEnd: string, bStart: string, bEnd: string) {
   return new Date(aStart) < new Date(bEnd) && new Date(bStart) < new Date(aEnd);
 }
 
+// format date as DD/MM/YYYY HH:MM for consistent display
+function formatDateDMY(input: string | Date | null | undefined) {
+  if (!input) return "";
+  const d = typeof input === "string" ? new Date(input) : input;
+  if (Number.isNaN(d.getTime())) return "";
+  const pad = (n: number) => n.toString().padStart(2, "0");
+  return `${pad(d.getDate())}/${pad(d.getMonth() + 1)}/${d.getFullYear()} ${pad(d.getHours())}:${pad(d.getMinutes())}`;
+}
+
 export default function SacPermissionPage() {
   const router = useRouter();
   const { data: session, isPending } = authClient.useSession();
@@ -71,7 +79,6 @@ export default function SacPermissionPage() {
     setLoading(false);
   }, []);
 
-  // simple role detection: prefer explicit role on session.user.role, else default student
   const role: Role = useMemo(() => {
     if (!session) return "student";
     const u: any = session.user as any;
@@ -163,9 +170,8 @@ function RequestForm({ existingRequests, onCreate, requesterEmail, requesterName
   const [capacity, setCapacity] = useState<number | undefined>(undefined);
   const [purpose, setPurpose] = useState("");
 
-  // separate date & time
-  const [startDate, setStartDate] = useState(""); // YYYY-MM-DD
-  const [startTime, setStartTime] = useState(""); // HH:MM
+  const [startDate, setStartDate] = useState(""); // DD/MM/YYYY input kept as ISO date input value (YYYY-MM-DD)
+  const [startTime, setStartTime] = useState("");
   const [endDate, setEndDate] = useState("");
   const [endTime, setEndTime] = useState("");
 
@@ -368,7 +374,7 @@ function StudentRequestList({ requests, onCancel }: { requests: SacRequest[]; on
                 <h3 className="font-semibold">{r.location} — {r.purpose}</h3>
                 <span className={`text-xs px-2 py-1 rounded ${r.status === 'Pending' ? 'bg-yellow-100 text-yellow-700' : r.status === 'Approved' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>{r.status}</span>
               </div>
-              <p className="text-sm text-neutral-500">{new Date(r.start).toLocaleString()} — {new Date(r.end).toLocaleString()}</p>
+              <p className="text-sm text-neutral-500">{formatDateDMY(r.start)} — {formatDateDMY(r.end)}</p>
             </div>
             <div className="flex items-center gap-2">
               {r.status === 'Pending' && (
@@ -416,7 +422,7 @@ function ManagerRequestList({ requests, onUpdate }: { requests: SacRequest[]; on
                 <span className={`text-xs px-2 py-1 rounded ${r.status === 'Pending' ? 'bg-yellow-100 text-yellow-700' : r.status === 'Approved' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>{r.status}</span>
               </div>
               <p className="text-sm text-neutral-500">Requested by {r.requesterName || r.requesterEmail}</p>
-              <p className="text-sm text-neutral-500">{new Date(r.start).toLocaleString()} — {new Date(r.end).toLocaleString()}</p>
+              <p className="text-sm text-neutral-500">{formatDateDMY(r.start)} — {formatDateDMY(r.end)}</p>
             </div>
 
             <div className="flex items-center gap-2">
