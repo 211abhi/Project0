@@ -120,6 +120,14 @@ function generateId() {
 function overlaps(aStart, aEnd, bStart, bEnd) {
     return new Date(aStart) < new Date(bEnd) && new Date(bStart) < new Date(aEnd);
 }
+// format date as DD/MM/YYYY HH:MM for consistent display
+function formatDateDMY(input) {
+    if (!input) return "";
+    const d = typeof input === "string" ? new Date(input) : input;
+    if (Number.isNaN(d.getTime())) return "";
+    const pad = (n)=>n.toString().padStart(2, "0");
+    return `${pad(d.getDate())}/${pad(d.getMonth() + 1)}/${d.getFullYear()} ${pad(d.getHours())}:${pad(d.getMinutes())}`;
+}
 function SacPermissionPage() {
     const router = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useRouter"])();
     const { data: session, isPending } = __TURBOPACK__imported__module__$5b$project$5d2f$lib$2f$auth$2d$client$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["authClient"].useSession();
@@ -130,7 +138,6 @@ function SacPermissionPage() {
         //TURBOPACK unreachable
         ;
     }, []);
-    // simple role detection: prefer explicit role on session.user.role, else default student
     const role = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useMemo"])(()=>{
         if (!session) return "student";
         const u = session.user;
@@ -152,7 +159,7 @@ function SacPermissionPage() {
         children: "Loading..."
     }, void 0, false, {
         fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-        lineNumber: 88,
+        lineNumber: 95,
         columnNumber: 25
     }, this);
     if (!session) return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -160,7 +167,7 @@ function SacPermissionPage() {
         children: "You must be signed in to use SAC Permission."
     }, void 0, false, {
         fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-        lineNumber: 89,
+        lineNumber: 96,
         columnNumber: 24
     }, this);
     const email = session.user.email || "unknown";
@@ -177,12 +184,12 @@ function SacPermissionPage() {
                         children: "SAC Permission"
                     }, void 0, false, {
                         fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                        lineNumber: 99,
+                        lineNumber: 106,
                         columnNumber: 11
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                    lineNumber: 98,
+                    lineNumber: 105,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Card"], {
@@ -194,20 +201,20 @@ function SacPermissionPage() {
                                     children: "Make a Request"
                                 }, void 0, false, {
                                     fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                                    lineNumber: 104,
+                                    lineNumber: 111,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["CardDescription"], {
                                     children: "Book LA1/LA2, DTS, STS or Football grounds"
                                 }, void 0, false, {
                                     fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                                    lineNumber: 105,
+                                    lineNumber: 112,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                            lineNumber: 103,
+                            lineNumber: 110,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["CardContent"], {
@@ -221,18 +228,18 @@ function SacPermissionPage() {
                                 requesterName: name
                             }, void 0, false, {
                                 fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                                lineNumber: 108,
+                                lineNumber: 115,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                            lineNumber: 107,
+                            lineNumber: 114,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                    lineNumber: 102,
+                    lineNumber: 109,
                     columnNumber: 9
                 }, this),
                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Card"], {
@@ -243,20 +250,20 @@ function SacPermissionPage() {
                                     children: "Your Requests"
                                 }, void 0, false, {
                                     fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                                    lineNumber: 119,
+                                    lineNumber: 126,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["CardDescription"], {
                                     children: "History of requests you made"
                                 }, void 0, false, {
                                     fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                                    lineNumber: 120,
+                                    lineNumber: 127,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                            lineNumber: 118,
+                            lineNumber: 125,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["CardContent"], {
@@ -265,24 +272,24 @@ function SacPermissionPage() {
                                 onCancel: (id)=>setRequests((s)=>s.filter((r)=>r.id !== id))
                             }, void 0, false, {
                                 fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                                lineNumber: 123,
+                                lineNumber: 130,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                            lineNumber: 122,
+                            lineNumber: 129,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                    lineNumber: 117,
+                    lineNumber: 124,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-            lineNumber: 97,
+            lineNumber: 104,
             columnNumber: 7
         }, this);
     }
@@ -297,12 +304,12 @@ function SacPermissionPage() {
                     children: "SAC Permission - Incoming Requests"
                 }, void 0, false, {
                     fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                    lineNumber: 137,
+                    lineNumber: 144,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                lineNumber: 136,
+                lineNumber: 143,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["Card"], {
@@ -313,20 +320,20 @@ function SacPermissionPage() {
                                 children: "Incoming Requests"
                             }, void 0, false, {
                                 fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                                lineNumber: 142,
+                                lineNumber: 149,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["CardDescription"], {
                                 children: "Approve, reject or edit requests"
                             }, void 0, false, {
                                 fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                                lineNumber: 143,
+                                lineNumber: 150,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                        lineNumber: 141,
+                        lineNumber: 148,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$components$2f$ui$2f$card$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["CardContent"], {
@@ -335,24 +342,24 @@ function SacPermissionPage() {
                             onUpdate: (next)=>setRequests(next)
                         }, void 0, false, {
                             fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                            lineNumber: 146,
+                            lineNumber: 153,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                        lineNumber: 145,
+                        lineNumber: 152,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                lineNumber: 140,
+                lineNumber: 147,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-        lineNumber: 135,
+        lineNumber: 142,
         columnNumber: 5
     }, this);
 }
@@ -360,9 +367,8 @@ function RequestForm({ existingRequests, onCreate, requesterEmail, requesterName
     const [location, setLocation] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])("LA1");
     const [capacity, setCapacity] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(undefined);
     const [purpose, setPurpose] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])("");
-    // separate date & time
-    const [startDate, setStartDate] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(""); // YYYY-MM-DD
-    const [startTime, setStartTime] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(""); // HH:MM
+    const [startDate, setStartDate] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])(""); // DD/MM/YYYY input kept as ISO date input value (YYYY-MM-DD)
+    const [startTime, setStartTime] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])("");
     const [endDate, setEndDate] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])("");
     const [endTime, setEndTime] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])("");
     const [duration, setDuration] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useState"])("60"); // minutes or 'custom'
@@ -480,7 +486,7 @@ function RequestForm({ existingRequests, onCreate, requesterEmail, requesterName
                                 children: "Location"
                             }, void 0, false, {
                                 fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                                lineNumber: 275,
+                                lineNumber: 281,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("select", {
@@ -493,7 +499,7 @@ function RequestForm({ existingRequests, onCreate, requesterEmail, requesterName
                                         children: "LA1 (Lecture Auditorium 1)"
                                     }, void 0, false, {
                                         fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                                        lineNumber: 277,
+                                        lineNumber: 283,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
@@ -501,7 +507,7 @@ function RequestForm({ existingRequests, onCreate, requesterEmail, requesterName
                                         children: "LA2 (Lecture Auditorium 2)"
                                     }, void 0, false, {
                                         fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                                        lineNumber: 278,
+                                        lineNumber: 284,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
@@ -509,7 +515,7 @@ function RequestForm({ existingRequests, onCreate, requesterEmail, requesterName
                                         children: "DTS"
                                     }, void 0, false, {
                                         fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                                        lineNumber: 279,
+                                        lineNumber: 285,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
@@ -517,7 +523,7 @@ function RequestForm({ existingRequests, onCreate, requesterEmail, requesterName
                                         children: "STS"
                                     }, void 0, false, {
                                         fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                                        lineNumber: 280,
+                                        lineNumber: 286,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
@@ -525,7 +531,7 @@ function RequestForm({ existingRequests, onCreate, requesterEmail, requesterName
                                         children: "Football Ground 1"
                                     }, void 0, false, {
                                         fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                                        lineNumber: 281,
+                                        lineNumber: 287,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
@@ -533,19 +539,19 @@ function RequestForm({ existingRequests, onCreate, requesterEmail, requesterName
                                         children: "Football Ground 2"
                                     }, void 0, false, {
                                         fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                                        lineNumber: 282,
+                                        lineNumber: 288,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                                lineNumber: 276,
+                                lineNumber: 282,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                        lineNumber: 274,
+                        lineNumber: 280,
                         columnNumber: 9
                     }, this),
                     (location === "LA1" || location === "LA2") && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -555,7 +561,7 @@ function RequestForm({ existingRequests, onCreate, requesterEmail, requesterName
                                 children: "Needed student capacity"
                             }, void 0, false, {
                                 fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                                lineNumber: 288,
+                                lineNumber: 294,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -566,13 +572,13 @@ function RequestForm({ existingRequests, onCreate, requesterEmail, requesterName
                                 className: "mt-1 block w-full rounded-md border px-3 py-2"
                             }, void 0, false, {
                                 fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                                lineNumber: 289,
+                                lineNumber: 295,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                        lineNumber: 287,
+                        lineNumber: 293,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -587,7 +593,7 @@ function RequestForm({ existingRequests, onCreate, requesterEmail, requesterName
                                             children: "Start"
                                         }, void 0, false, {
                                             fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                                            lineNumber: 297,
+                                            lineNumber: 303,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -595,13 +601,13 @@ function RequestForm({ existingRequests, onCreate, requesterEmail, requesterName
                                             children: "Duration:"
                                         }, void 0, false, {
                                             fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                                            lineNumber: 298,
+                                            lineNumber: 304,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                                    lineNumber: 296,
+                                    lineNumber: 302,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -614,7 +620,7 @@ function RequestForm({ existingRequests, onCreate, requesterEmail, requesterName
                                             className: "rounded-md border px-3 py-2"
                                         }, void 0, false, {
                                             fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                                            lineNumber: 301,
+                                            lineNumber: 307,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -624,13 +630,13 @@ function RequestForm({ existingRequests, onCreate, requesterEmail, requesterName
                                             className: "rounded-md border px-3 py-2"
                                         }, void 0, false, {
                                             fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                                            lineNumber: 302,
+                                            lineNumber: 308,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                                    lineNumber: 300,
+                                    lineNumber: 306,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -643,7 +649,7 @@ function RequestForm({ existingRequests, onCreate, requesterEmail, requesterName
                                             children: "30m"
                                         }, void 0, false, {
                                             fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                                            lineNumber: 305,
+                                            lineNumber: 311,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -653,7 +659,7 @@ function RequestForm({ existingRequests, onCreate, requesterEmail, requesterName
                                             children: "1h"
                                         }, void 0, false, {
                                             fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                                            lineNumber: 306,
+                                            lineNumber: 312,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -663,7 +669,7 @@ function RequestForm({ existingRequests, onCreate, requesterEmail, requesterName
                                             children: "2h"
                                         }, void 0, false, {
                                             fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                                            lineNumber: 307,
+                                            lineNumber: 313,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -673,24 +679,24 @@ function RequestForm({ existingRequests, onCreate, requesterEmail, requesterName
                                             children: "Custom"
                                         }, void 0, false, {
                                             fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                                            lineNumber: 308,
+                                            lineNumber: 314,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                                    lineNumber: 304,
+                                    lineNumber: 310,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                            lineNumber: 295,
+                            lineNumber: 301,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                        lineNumber: 294,
+                        lineNumber: 300,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -702,7 +708,7 @@ function RequestForm({ existingRequests, onCreate, requesterEmail, requesterName
                                     children: "End"
                                 }, void 0, false, {
                                     fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                                    lineNumber: 316,
+                                    lineNumber: 322,
                                     columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -715,7 +721,7 @@ function RequestForm({ existingRequests, onCreate, requesterEmail, requesterName
                                             className: "rounded-md border px-3 py-2"
                                         }, void 0, false, {
                                             fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                                            lineNumber: 318,
+                                            lineNumber: 324,
                                             columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -725,30 +731,30 @@ function RequestForm({ existingRequests, onCreate, requesterEmail, requesterName
                                             className: "rounded-md border px-3 py-2"
                                         }, void 0, false, {
                                             fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                                            lineNumber: 319,
+                                            lineNumber: 325,
                                             columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                                    lineNumber: 317,
+                                    lineNumber: 323,
                                     columnNumber: 13
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                            lineNumber: 315,
+                            lineNumber: 321,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                        lineNumber: 314,
+                        lineNumber: 320,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                lineNumber: 273,
+                lineNumber: 279,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -758,7 +764,7 @@ function RequestForm({ existingRequests, onCreate, requesterEmail, requesterName
                         children: "Purpose / Notes"
                     }, void 0, false, {
                         fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                        lineNumber: 326,
+                        lineNumber: 332,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("textarea", {
@@ -768,13 +774,13 @@ function RequestForm({ existingRequests, onCreate, requesterEmail, requesterName
                         className: "mt-1 block w-full rounded-md border px-3 py-2"
                     }, void 0, false, {
                         fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                        lineNumber: 327,
+                        lineNumber: 333,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                lineNumber: 325,
+                lineNumber: 331,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -787,7 +793,7 @@ function RequestForm({ existingRequests, onCreate, requesterEmail, requesterName
                         children: "Make special request"
                     }, void 0, false, {
                         fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                        lineNumber: 332,
+                        lineNumber: 338,
                         columnNumber: 9
                     }, this),
                     isSpecial && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -798,7 +804,7 @@ function RequestForm({ existingRequests, onCreate, requesterEmail, requesterName
                                 children: "Special request details"
                             }, void 0, false, {
                                 fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                                lineNumber: 335,
+                                lineNumber: 341,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -808,19 +814,19 @@ function RequestForm({ existingRequests, onCreate, requesterEmail, requesterName
                                 placeholder: "Purpose, preferred location notes, equipment needed, etc."
                             }, void 0, false, {
                                 fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                                lineNumber: 336,
+                                lineNumber: 342,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                        lineNumber: 334,
+                        lineNumber: 340,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                lineNumber: 331,
+                lineNumber: 337,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -832,7 +838,7 @@ function RequestForm({ existingRequests, onCreate, requesterEmail, requesterName
                         children: "Submit request"
                     }, void 0, false, {
                         fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                        lineNumber: 342,
+                        lineNumber: 348,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -851,7 +857,7 @@ function RequestForm({ existingRequests, onCreate, requesterEmail, requesterName
                         children: "Reset"
                     }, void 0, false, {
                         fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                        lineNumber: 343,
+                        lineNumber: 349,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -862,14 +868,14 @@ function RequestForm({ existingRequests, onCreate, requesterEmail, requesterName
                                 children: "Slot appears free"
                             }, void 0, false, {
                                 fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                                lineNumber: 345,
+                                lineNumber: 351,
                                 columnNumber: 58
                             }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                 className: "text-red-600",
                                 children: "Slot unavailable"
                             }, void 0, false, {
                                 fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                                lineNumber: 345,
+                                lineNumber: 351,
                                 columnNumber: 118
                             }, this)),
                             !isSlotFree && suggestedStart && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -880,19 +886,19 @@ function RequestForm({ existingRequests, onCreate, requesterEmail, requesterName
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                                lineNumber: 347,
+                                lineNumber: 353,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                        lineNumber: 344,
+                        lineNumber: 350,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                lineNumber: 341,
+                lineNumber: 347,
                 columnNumber: 7
             }, this),
             error && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -900,7 +906,7 @@ function RequestForm({ existingRequests, onCreate, requesterEmail, requesterName
                 children: error
             }, void 0, false, {
                 fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                lineNumber: 352,
+                lineNumber: 358,
                 columnNumber: 17
             }, this),
             success && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -908,13 +914,13 @@ function RequestForm({ existingRequests, onCreate, requesterEmail, requesterName
                 children: success
             }, void 0, false, {
                 fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                lineNumber: 353,
+                lineNumber: 359,
                 columnNumber: 19
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-        lineNumber: 272,
+        lineNumber: 278,
         columnNumber: 5
     }, this);
 }
@@ -924,7 +930,7 @@ function StudentRequestList({ requests, onCancel }) {
         children: "No requests made yet."
     }, void 0, false, {
         fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-        lineNumber: 359,
+        lineNumber: 365,
         columnNumber: 32
     }, this);
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -948,7 +954,7 @@ function StudentRequestList({ requests, onCancel }) {
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                                            lineNumber: 368,
+                                            lineNumber: 374,
                                             columnNumber: 17
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -956,31 +962,31 @@ function StudentRequestList({ requests, onCancel }) {
                                             children: r.status
                                         }, void 0, false, {
                                             fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                                            lineNumber: 369,
+                                            lineNumber: 375,
                                             columnNumber: 17
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                                    lineNumber: 367,
+                                    lineNumber: 373,
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                     className: "text-sm text-neutral-500",
                                     children: [
-                                        new Date(r.start).toLocaleString(),
+                                        formatDateDMY(r.start),
                                         " — ",
-                                        new Date(r.end).toLocaleString()
+                                        formatDateDMY(r.end)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                                    lineNumber: 371,
+                                    lineNumber: 377,
                                     columnNumber: 15
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                            lineNumber: 366,
+                            lineNumber: 372,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -991,28 +997,28 @@ function StudentRequestList({ requests, onCancel }) {
                                 children: "Cancel"
                             }, void 0, false, {
                                 fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                                lineNumber: 375,
+                                lineNumber: 381,
                                 columnNumber: 17
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                            lineNumber: 373,
+                            lineNumber: 379,
                             columnNumber: 13
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                    lineNumber: 365,
+                    lineNumber: 371,
                     columnNumber: 11
                 }, this)
             }, r.id, false, {
                 fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                lineNumber: 364,
+                lineNumber: 370,
                 columnNumber: 9
             }, this))
     }, void 0, false, {
         fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-        lineNumber: 362,
+        lineNumber: 368,
         columnNumber: 5
     }, this);
 }
@@ -1042,7 +1048,7 @@ function ManagerRequestList({ requests, onUpdate }) {
         children: "No incoming requests."
     }, void 0, false, {
         fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-        lineNumber: 406,
+        lineNumber: 412,
         columnNumber: 32
     }, this);
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1067,7 +1073,7 @@ function ManagerRequestList({ requests, onUpdate }) {
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                                                lineNumber: 415,
+                                                lineNumber: 421,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -1075,13 +1081,13 @@ function ManagerRequestList({ requests, onUpdate }) {
                                                 children: r.status
                                             }, void 0, false, {
                                                 fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                                                lineNumber: 416,
+                                                lineNumber: 422,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                                        lineNumber: 414,
+                                        lineNumber: 420,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -1092,25 +1098,25 @@ function ManagerRequestList({ requests, onUpdate }) {
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                                        lineNumber: 418,
+                                        lineNumber: 424,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                         className: "text-sm text-neutral-500",
                                         children: [
-                                            new Date(r.start).toLocaleString(),
+                                            formatDateDMY(r.start),
                                             " — ",
-                                            new Date(r.end).toLocaleString()
+                                            formatDateDMY(r.end)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                                        lineNumber: 419,
+                                        lineNumber: 425,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                                lineNumber: 413,
+                                lineNumber: 419,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1122,7 +1128,7 @@ function ManagerRequestList({ requests, onUpdate }) {
                                         children: "Edit"
                                     }, void 0, false, {
                                         fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                                        lineNumber: 423,
+                                        lineNumber: 429,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1131,7 +1137,7 @@ function ManagerRequestList({ requests, onUpdate }) {
                                         children: "Approve"
                                     }, void 0, false, {
                                         fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                                        lineNumber: 424,
+                                        lineNumber: 430,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1140,24 +1146,24 @@ function ManagerRequestList({ requests, onUpdate }) {
                                         children: "Reject"
                                     }, void 0, false, {
                                         fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                                        lineNumber: 425,
+                                        lineNumber: 431,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                                lineNumber: 422,
+                                lineNumber: 428,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                        lineNumber: 412,
+                        lineNumber: 418,
                         columnNumber: 11
                     }, this)
                 }, r.id, false, {
                     fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                    lineNumber: 411,
+                    lineNumber: 417,
                     columnNumber: 9
                 }, this)),
             editing && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1168,7 +1174,7 @@ function ManagerRequestList({ requests, onUpdate }) {
                         children: "Edit request"
                     }, void 0, false, {
                         fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                        lineNumber: 433,
+                        lineNumber: 439,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(EditRequestForm, {
@@ -1178,19 +1184,19 @@ function ManagerRequestList({ requests, onUpdate }) {
                         existingRequests: requests
                     }, void 0, false, {
                         fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                        lineNumber: 434,
+                        lineNumber: 440,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                lineNumber: 432,
+                lineNumber: 438,
                 columnNumber: 9
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-        lineNumber: 409,
+        lineNumber: 415,
         columnNumber: 5
     }, this);
 }
@@ -1240,7 +1246,7 @@ function EditRequestForm({ request, onCancel, onSave, existingRequests }) {
                                 children: "Start"
                             }, void 0, false, {
                                 fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                                lineNumber: 471,
+                                lineNumber: 477,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -1250,13 +1256,13 @@ function EditRequestForm({ request, onCancel, onSave, existingRequests }) {
                                 className: "mt-1 block w-full rounded-md border px-2 py-1"
                             }, void 0, false, {
                                 fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                                lineNumber: 472,
+                                lineNumber: 478,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                        lineNumber: 470,
+                        lineNumber: 476,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1266,7 +1272,7 @@ function EditRequestForm({ request, onCancel, onSave, existingRequests }) {
                                 children: "End"
                             }, void 0, false, {
                                 fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                                lineNumber: 475,
+                                lineNumber: 481,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -1276,19 +1282,19 @@ function EditRequestForm({ request, onCancel, onSave, existingRequests }) {
                                 className: "mt-1 block w-full rounded-md border px-2 py-1"
                             }, void 0, false, {
                                 fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                                lineNumber: 476,
+                                lineNumber: 482,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                        lineNumber: 474,
+                        lineNumber: 480,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                lineNumber: 469,
+                lineNumber: 475,
                 columnNumber: 7
             }, this),
             (request.location === "LA1" || request.location === "LA2") && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1298,7 +1304,7 @@ function EditRequestForm({ request, onCancel, onSave, existingRequests }) {
                         children: "Capacity"
                     }, void 0, false, {
                         fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                        lineNumber: 482,
+                        lineNumber: 488,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
@@ -1308,13 +1314,13 @@ function EditRequestForm({ request, onCancel, onSave, existingRequests }) {
                         className: "mt-1 block w-40 rounded-md border px-2 py-1"
                     }, void 0, false, {
                         fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                        lineNumber: 483,
+                        lineNumber: 489,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                lineNumber: 481,
+                lineNumber: 487,
                 columnNumber: 9
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1324,7 +1330,7 @@ function EditRequestForm({ request, onCancel, onSave, existingRequests }) {
                         children: "Purpose"
                     }, void 0, false, {
                         fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                        lineNumber: 488,
+                        lineNumber: 494,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("textarea", {
@@ -1334,13 +1340,13 @@ function EditRequestForm({ request, onCancel, onSave, existingRequests }) {
                         className: "mt-1 block w-full rounded-md border px-2 py-1"
                     }, void 0, false, {
                         fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                        lineNumber: 489,
+                        lineNumber: 495,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                lineNumber: 487,
+                lineNumber: 493,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1352,7 +1358,7 @@ function EditRequestForm({ request, onCancel, onSave, existingRequests }) {
                         children: "Save"
                     }, void 0, false, {
                         fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                        lineNumber: 493,
+                        lineNumber: 499,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -1361,7 +1367,7 @@ function EditRequestForm({ request, onCancel, onSave, existingRequests }) {
                         children: "Cancel"
                     }, void 0, false, {
                         fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                        lineNumber: 494,
+                        lineNumber: 500,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1371,18 +1377,18 @@ function EditRequestForm({ request, onCancel, onSave, existingRequests }) {
                             children: "Conflict"
                         }, void 0, false, {
                             fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                            lineNumber: 495,
+                            lineNumber: 501,
                             columnNumber: 58
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                        lineNumber: 495,
+                        lineNumber: 501,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                lineNumber: 492,
+                lineNumber: 498,
                 columnNumber: 7
             }, this),
             error && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -1390,13 +1396,13 @@ function EditRequestForm({ request, onCancel, onSave, existingRequests }) {
                 children: error
             }, void 0, false, {
                 fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-                lineNumber: 498,
+                lineNumber: 504,
                 columnNumber: 17
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/app/dashboard/sac-permission/page.tsx",
-        lineNumber: 468,
+        lineNumber: 474,
         columnNumber: 5
     }, this);
 }

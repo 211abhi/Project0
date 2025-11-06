@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google"; // 1. Import Poppins
 import "./globals.css";
 import { ConvexClientProvider } from "./ConvexClientProvider";
+import Sidebar from "@/components/Sidebar";
 
 // 2. Configure the Poppins font
 const poppins = Poppins({
@@ -25,7 +26,11 @@ export default function RootLayout({
       <body
         className={`${poppins.variable} antialiased`} // 3. Apply the font variable to the body
       >
-        <ConvexClientProvider>{children}</ConvexClientProvider>
+        <ConvexClientProvider>
+          <Sidebar />
+          {/* avoid content being overlapped by the fixed Sidebar on md+ screens */}
+          <div className="min-h-screen md:pl-48">{children}</div>
+        </ConvexClientProvider>
       </body>
     </html>
   );
