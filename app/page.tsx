@@ -94,12 +94,21 @@ export default function Home() {
             {/* 3 Column Layout */}
             <div className="mx-auto grid max-w-8xl grid-cols-12 gap-14 px-6 py-8">
                 {/* Left Sidebar - Navigation */}
-                <aside className="col-span-12 md:col-span-3 lg:col-span-2 md:border-r md:border-neutral-200/50 md:pr-8 dark:md:border-neutral-800/50">
-                    <nav className="sticky top-24 space-y-2">
-
+                {/* inline nav visible on small screens only; md+ uses fixed Sidebar component in layout */}
+                <aside className="col-span-12 md:hidden">
+                    <nav className="space-y-2">
+                        <div className="mb-3">
+                            <button onClick={() => router.push('/')} className="w-full rounded-md px-3 py-2 text-left text-sm font-medium bg-white/60 border" aria-label="Go to Home">Home</button>
+                        </div>
                         {navItems.map((item) => (
                             <button
                                 key={item}
+                                onClick={() => {
+                                    if (item === 'SAC') router.push('/dashboard/sac-permission');
+                                    else if (item === 'Communities') router.push('/dashboard');
+                                    else if (item === 'Maps') router.push('/dashboard/map');
+                                    else if (item === 'Lectures') router.push('/dashboard/study');
+                                }}
                                 className="w-full rounded-md px-3 py-2 text-left text-sm font-medium text-neutral-600 hover:bg-neutral-100 hover:text-neutral-900 dark:text-neutral-400 dark:hover:bg-neutral-800 dark:hover:text-neutral-100"
                                 tabIndex={0}
                                 aria-label={`Navigate to ${item}`}
